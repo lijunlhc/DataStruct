@@ -1,31 +1,31 @@
 /*
- * Polynomial.c
+ * ElemType.c
  *
  *  Created on: 2019年3月5日
  *      Author: junli
  */
 #include <stdlib.h>
-#include "Polynomial.h"
-Status InitList(SqList *L) {
-	L->elem = (Polynomial *) malloc(sizeof(Polynomial) * MAXSIZE);
+#include "SqList.h"
+Status InitList_SqL(SqList *L) {
+	L->elem = (ElemType *) malloc(sizeof(ElemType) * MAXSIZE);
 	if (!(L->elem))
 		exit(OVERFLOW);
 	L->length = 0;
 	return OK;
 }
-Status GetElem(SqList L, int i, Polynomial *e) {
+Status GetElem_SqL(SqList L, int i, ElemType *e) {
 	if (i < 1 || i > L.length)
 		return ERROR;
 	e = L.elem + i - 1;
 	return OK;
 }
-int LocateElem(SqList L, Polynomial e) {
+int LocateElem_SqL(SqList L, ElemType e) {
 	for (int i = 0; i < L.length; i++)
 		if ((L.elem->coef == e.coef) && (L.elem->expn == e.expn))
 			return i + 1;
 	return 0;
 }
-Status ListInsert(SqList *L, int i, Polynomial e) {
+Status ListInsert_SqL(SqList *L, int i, ElemType e) {
 	if ((i < 1) || (i > L->length + 1))
 		return ERROR;
 	if (L->length == MAXSIZE)
@@ -36,7 +36,7 @@ Status ListInsert(SqList *L, int i, Polynomial e) {
 	++(L->length);
 	return OK;
 }
-Status ListDelete(SqList *L, int i) {
+Status ListDelete_SqL(SqList *L, int i) {
 	if ((i < 1) || (i > L->length))
 		return ERROR;
 	for (int j = i; j <= L->length - 1; j++)

@@ -19,7 +19,7 @@ typedef struct {
 typedef struct LNode {
 	ElemType data;
 	struct LNode *next;
-}LNode, *LinkList;
+} LNode, *LinkList;
 Status InitList(LinkList L);
 Status GetElem(LinkList L, int i, ElemType *e);
 LNode *LocateElem(LinkList L, ElemType e);

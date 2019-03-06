@@ -16,11 +16,10 @@ typedef struct {
 	float coef;
 	int expn;
 } ElemType;
-typedef struct DuLNode
-{
-    ElemType data;
-    struct DuLNode *prior;
-    struct DuLNode *next;
+typedef struct DuLNode {
+	ElemType data;
+	struct DuLNode *prior;
+	struct DuLNode *next;
 } DuLNode, *DuLinkList;
 Status InitDuList(DuLinkList L);
 DuLNode * GetElem_DuL(DuLinkList L, int i, ElemType *e);
