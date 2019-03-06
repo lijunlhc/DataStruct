@@ -69,3 +69,15 @@ void CreateList_H(LinkList L, int n) {
 		L->next = p;
 	}
 }
+void CreateList_R(LinkList L, int n) {
+	L = (LNode *)malloc(sizeof(LNode));
+	L->next = NULL;
+	LNode *r = L;
+	for(int i = 0; i < n; ++i) {
+		LNode *p = (LNode *)malloc(sizeof(LNode));
+		scanf("%f%d",&p->data.coef,&p->data.expn);
+		p->next = NULL;
+		r->next = p;
+		r = p;
+	}
+}

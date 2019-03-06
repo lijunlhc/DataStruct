@@ -26,5 +26,6 @@ LNode *LocateElem(LinkList L, ElemType e);
 Status ListInsert(LinkList L, int i, ElemType e);
 Status ListDelete(LinkList L, int i);
 void CreateList_H(LinkList L, int n);
+void CreateList_R(LinkList L, int n);
 
 #endif /* LINKLIST_H_ */
