@@ -16,12 +16,12 @@ Status InitList_SqL(SqList *L) {
 Status GetElem_SqL(SqList L, int i, ElemType *e) {
 	if (i < 1 || i > L.length)
 		return ERROR;
-	e = L.elem + i - 1;
+	*e = *(L.elem + i - 1);
 	return OK;
 }
 int LocateElem_SqL(SqList L, ElemType e) {
 	for (int i = 0; i < L.length; i++)
-		if ((L.elem->coef == e.coef) && (L.elem->expn == e.expn))
+		if (L.elem[i].num == e.num)
 			return i + 1;
 	return 0;
 }
@@ -43,4 +43,16 @@ Status ListDelete_SqL(SqList *L, int i) {
 		L->elem[j - 1] = L->elem[j];
 	--(L->length);
 	return OK;
+}
+void MergeList_SqL(SqList *LA, SqList LB)
+{
+	int m = LA->length;
+	int n = LB.length;
+	ElemType e;
+	for(int i = 1; i <= n; i++)
+	{
+		GetElem_SqL(LB, i, &e);
+		if(!LocateElem_SqL(*LA, e))
+			ListInsert_SqL(LA, ++m, e);
+	}
 }

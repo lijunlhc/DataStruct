@@ -10,8 +10,7 @@
 typedef int Status;
 #define MAXSIZE 10
 typedef struct {
-	float coef;
-	int expn;
+	int num;
 } ElemType;
 typedef struct {
 	ElemType *elem;
@@ -22,3 +21,4 @@ Status GetElem_SqL(SqList L, int i, ElemType *e);
 int LocateElem_SqL(SqList L, ElemType e);
 Status ListInsert_SqL(SqList *L, int i, ElemType e);
 Status ListDelete_SqL(SqList *L, int i);
+void MergeList_SqL(SqList *LA, SqList LB);
