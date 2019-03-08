@@ -56,3 +56,22 @@ void MergeList_SqL(SqList *LA, SqList LB)
 			ListInsert_SqL(LA, ++m, e);
 	}
 }
+void MergeList_SqL_Ord(SqList LA, SqList LB, SqList * LC) {
+	LC->length = LA.length + LB.length;
+	LC->elem = (ElemType *)malloc(sizeof(ElemType) * LC->length);
+	ElemType * pc = LC->elem;
+	ElemType * pa = LA.elem;
+	ElemType * pb = LB.elem;
+	ElemType * pa_last = LA.elem + LA.length - 1;
+	ElemType * pb_last = LB.elem + LB.length - 1;
+	while((pa <= pa_last) && (pb <= pb_last)) {
+		if(pa->num <= pb->num)
+			*pc++ = *pa++;
+		else
+			*pc++ = *pb++;
+	}
+	while(pa <= pa_last)
+		*pc++ = *pa++;
+	while(pb <= pb_last)
+		*pc++ = *pb++;
+}

@@ -7,9 +7,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "LinkList.h"
-Status InitList(LinkList L) {
-	L = (LNode *) malloc(sizeof(LNode));
-	L->next = NULL;
+Status InitList(LinkList *L) {
+	(*L) = (LNode *) malloc(sizeof(LNode));
+	(*L)->next = NULL;
 	return OK;
 }
 Status GetElem(LinkList L, int i, ElemType *e) {
@@ -30,8 +30,8 @@ LNode *LocateElem(LinkList L, ElemType e) {
 		p = p->next;
 	return p;
 }
-Status ListInsert(LinkList L, int i, ElemType e) {
-	LNode *p = L;
+Status ListInsert(LinkList *L, int i, ElemType e) {
+	LNode *p = *L;
 	int j = 0;
 	while (p && (j < i - 1)) {
 		p = p->next;
@@ -45,8 +45,8 @@ Status ListInsert(LinkList L, int i, ElemType e) {
 	p->next = &s;
 	return OK;
 }
-Status ListDelete(LinkList L, int i) {
-	LNode *p = L;
+Status ListDelete(LinkList *L, int i) {
+	LNode *p = *L;
 	int j = 0;
 	while ((p->next) && (j < i - 1)) {
 		p = p->next;
@@ -59,20 +59,20 @@ Status ListDelete(LinkList L, int i) {
 	free(q);
 	return OK;
 }
-void CreateList_H(LinkList L, int n) {
-	L = (LNode *) malloc(sizeof(LNode));
-	L->next = NULL;
+void CreateList_H(LinkList *L, int n) {
+	(*L) = (LNode *) malloc(sizeof(LNode));
+	(*L)->next = NULL;
 	for (int i = 0; i < n; ++i) {
 		LNode *p = (LNode *) malloc(sizeof(LNode));
 		scanf("%f%d", &p->data.coef, &p->data.expn);
-		p->next = L->next;
-		L->next = p;
+		p->next = (*L)->next;
+		(*L)->next = p;
 	}
 }
-void CreateList_R(LinkList L, int n) {
-	L = (LNode *) malloc(sizeof(LNode));
-	L->next = NULL;
-	LNode *r = L;
+void CreateList_R(LinkList *L, int n) {
+	(*L) = (LNode *) malloc(sizeof(LNode));
+	(*L)->next = NULL;
+	LNode *r = *L;
 	for (int i = 0; i < n; ++i) {
 		LNode *p = (LNode *) malloc(sizeof(LNode));
 		scanf("%f%d", &p->data.coef, &p->data.expn);
@@ -81,3 +81,22 @@ void CreateList_R(LinkList L, int n) {
 		r = p;
 	}
 }
+//void MergeList_Link_Ord(LinkList *LA, LinkList *LB, LinkList *LC) {
+//	LNode *pa = (*LA)->next;
+//	LNode *pb = (*LB)->next;
+//	(*LC) = (*LA);
+//	LNode *pc = *LC;
+//	while(pa && pb) {
+//		if(pa->data.num <= pb->data.num) {
+//			pc->next = pa;
+//			pc = pa;
+//			pa = pa->next;
+//		} else {
+//			pc->next = pb;
+//			pc = pb;
+//			pb = pb->next;
+//		}
+//	}
+//	pc->next = pa ? pa : pb;
+//	free(*LB);
+//}

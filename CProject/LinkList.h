@@ -20,12 +20,13 @@ typedef struct LNode {
 	ElemType data;
 	struct LNode *next;
 } LNode, *LinkList;
-Status InitList(LinkList L);
+Status InitList(LinkList *L);
 Status GetElem(LinkList L, int i, ElemType *e);
 LNode *LocateElem(LinkList L, ElemType e);
-Status ListInsert(LinkList L, int i, ElemType e);
-Status ListDelete(LinkList L, int i);
-void CreateList_H(LinkList L, int n);
-void CreateList_R(LinkList L, int n);
+Status ListInsert(LinkList *L, int i, ElemType e);
+Status ListDelete(LinkList *L, int i);
+void CreateList_H(LinkList *L, int n);
+void CreateList_R(LinkList *L, int n);
+//void MergeList_Link_Ord(LinkList *LA, LinkList *LB, LinkList *LC);
 
 #endif /* LINKLIST_H_ */

@@ -22,3 +22,4 @@ int LocateElem_SqL(SqList L, ElemType e);
 Status ListInsert_SqL(SqList *L, int i, ElemType e);
 Status ListDelete_SqL(SqList *L, int i);
 void MergeList_SqL(SqList *LA, SqList LB);
+void MergeList_SqL_Ord(SqList LA, SqList LB, SqList *LC);
