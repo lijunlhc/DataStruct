@@ -27,3 +27,7 @@ Status Pop_Link(LinkStack *S, SElemType *e) {
 	free(p);
 	return OK;
 }
+SElemType GetTop(LinkStack S) {
+	if(S != NULL)
+		return S->data;
+}

@@ -23,5 +23,6 @@ typedef struct StackNode {
 Status InitStack_Link(LinkStack *S);
 Status Push_Link(LinkStack *S, SElemType e);
 Status Pop_Link(LinkStack *S, SElemType *e);
+SElemType GetTop_Link(LinkStack);
 
 #endif /* STACK_LINK_H_ */

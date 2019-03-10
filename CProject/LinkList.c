@@ -100,3 +100,8 @@ void CreateList_R(LinkList *L, int n) {
 //	pc->next = pa ? pa : pb;
 //	free(*LB);
 //}
+void TraverseList(LinkList p) {
+	if(p) {
+		TraverseList(p->next);
+	}
+}

@@ -27,6 +27,7 @@ Status ListInsert(LinkList *L, int i, ElemType e);
 Status ListDelete(LinkList *L, int i);
 void CreateList_H(LinkList *L, int n);
 void CreateList_R(LinkList *L, int n);
+void TraverseList(LinkList p);
 //void MergeList_Link_Ord(LinkList *LA, LinkList *LB, LinkList *LC);;
 
 #endif /* LINKLIST_H_ */
