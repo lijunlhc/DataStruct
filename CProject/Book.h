@@ -5,7 +5,7 @@
  *      Author: junli
  */
 
-#define MAXSIZE 10000
+//#define MAXSIZE 10000
 typedef struct {
 	char no[20];
 	char name[50];
