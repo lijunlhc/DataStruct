@@ -6,8 +6,9 @@
  */
 
 #include <stdlib.h>
-#include "stack_sq.h"
-Status InitStack_Sq(SqStack *S) {
+
+#include "sqstack.h"
+Status InitSqStack(SqStack *S) {
 	S->base = (SElemType *) malloc(sizeof(SElemType) * MAXSIZE);
 	if (!S->base)
 		exit(OVERFLOW);
@@ -15,21 +16,27 @@ Status InitStack_Sq(SqStack *S) {
 	S->stacksize = MAXSIZE;
 	return OK;
 }
-Status Push_Sq(SqStack *S, SElemType e) {
+Status PushSqStack(SqStack *S, SElemType e) {
 	if (S->top - S->base == S->stacksize)
 		return ERROR;
 	*S->top++ = e;
 	return OK;
 }
-Status Pop_Sq(SqStack *S, SElemType *e) {
+Status PopSqStack(SqStack *S, SElemType *e) {
 	if (S->top == S->base)
 		return ERROR;
 	*e = *--S->top;
 	return OK;
 }
-Status GetTop_Sq(SqStack S, SElemType *e) {
+Status GetTopSqStack(SqStack S, SElemType *e) {
 	if(S.top == S.base)
 		return ERROR;
 	*e = *(S.top - 1);
 	return OK;
+}
+Status SqStackEmpty(SqStack S) {
+	if(S.top == S.base)
+		return OK;
+	else
+		return ERROR;
 }

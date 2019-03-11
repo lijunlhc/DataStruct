@@ -6,19 +6,20 @@
  */
 
 #include <stdlib.h>
-#include "stack_link.h"
-Status InitStack_Link(LinkStack *S) {
+
+#include "linkstack.h"
+Status InitLinkStack(LinkStack *S) {
 	*S = NULL;
 	return OK;
 }
-Status Push_Link(LinkStack *S, SElemType e) {
+Status PushLinkStack(LinkStack *S, SElemType e) {
 	StackNode *p = (StackNode *)malloc(sizeof(SElemType));
 	p->data = e;
 	p->next = *S;
 	*S = p;
 	return OK;
 }
-Status Pop_Link(LinkStack *S, SElemType *e) {
+Status PopLinkStack(LinkStack *S, SElemType *e) {
 	if(*S == NULL)
 		return ERROR;
 	*e = (*S)->data;
@@ -27,7 +28,13 @@ Status Pop_Link(LinkStack *S, SElemType *e) {
 	free(p);
 	return OK;
 }
-SElemType GetTop(LinkStack S) {
+SElemType GetTopLinkStack(LinkStack S) {
 	if(S != NULL)
 		return S->data;
+}
+Status LinkStackEmpty(LinkStack S) {
+	if(S != NULL)
+		return ERROR;
+	else
+		return OK;
 }

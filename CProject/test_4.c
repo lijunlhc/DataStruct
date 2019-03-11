@@ -7,7 +7,8 @@
 
 #include <stdio.h>
 
-#include "hanoi.h"
+//#include "conversion.h"
 int main() {
-	Hanoi(4, 'A', 'B', 'C');
+//	conversion(1348);
+	return 0;
 }

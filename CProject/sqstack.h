@@ -5,8 +5,8 @@
  *      Author: junli
  */
 
-#ifndef STACK_SQ_H_
-#define STACK_SQ_H_
+#ifndef SQSTACK_H_
+#define SQSTACK_H_
 
 #define OK 1
 #define ERROR 0
@@ -14,16 +14,17 @@
 typedef int Status;
 #define MAXSIZE 100
 typedef struct {
-
+	int num;
 } SElemType;
 typedef struct {
 	SElemType *base;
 	SElemType *top;
 	int stacksize;
 } SqStack;
-Status InitStack_Sq(SqStack *S);
-Status Push_Sq(SqStack *S, SElemType e);
-Status Pop_Sq(SqStack *S, SElemType *e);
-Status GetTop_Sq(SqStack S, SElemType *e);
+Status InitSqStack(SqStack *S);
+Status PushSqStack(SqStack *S, SElemType e);
+Status PopSqStack(SqStack *S, SElemType *e);
+Status GetTopSqStack(SqStack S, SElemType *e);
+Status SqStackEmpty(SqStack S);
 
-#endif /* STACK_SQ_H_ */
+#endif /* SQSTACK_H_ */
