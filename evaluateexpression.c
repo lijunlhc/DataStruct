@@ -210,6 +210,7 @@ char Operate(char a, char theta, char b)
     switch(theta)
     {
         case '+': 
+            printf("%d\n", a + b);
             return (char)((int)a + (int)b);
         case '-':
             return (char)((int)a - (int)b);
