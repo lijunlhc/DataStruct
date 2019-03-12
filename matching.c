@@ -15,8 +15,8 @@ Status Matching() {
 	char c;
 	scanf("%c", &c);
 	SElemType e = {c};
-	while(c != '#' && flag) {
-		switch(c) {
+	while(e.ch != '#' && flag) {
+		switch(e.ch) {
 		case '[':
 		case '(':
 			PushLinkStack(&S, e);
@@ -35,6 +35,7 @@ Status Matching() {
 			break;
 		}
 		scanf("%c", &c);
+        e.ch = c;
 		if(LinkStackEmpty(S) && flag)
 			return TRUE;
 		else

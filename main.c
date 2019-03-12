@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include "matching.h"
 int main()
 {
-    printf("Hello World\n");
+    Matching();
     return 0;
 }
+
