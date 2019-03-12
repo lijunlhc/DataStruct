@@ -3,5 +3,5 @@
 char EvaluateExpression();
 int In(char c);
 char Precede(char TOPTR, char NOPTR);
-char Operate(char a, char theta, char b);
+int Operate(int a, char theta, int b);
 #endif

@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "evaluateexpression.h"
 #include "linkstack.h"
+#include "sqstack.h"
 #define TRUE 1
 #define FALSE 0
 int In(char c)
@@ -205,36 +207,39 @@ char Precede(char TOPTR, char NOPTR)
     }
 }
 
-char Operate(char a, char theta, char b)
+int Operate(int a, char theta, int b)
 {
     switch(theta)
     {
         case '+': 
-            printf("%d\n", a + b);
-            return (char)((int)a + (int)b);
+            return a + b;
         case '-':
-            return (char)((int)a - (int)b);
+            return a - b;
         case '*':
-            return (char)((int)a * (int)b);
+            return a * b;
         case '/':
-            return (char)((int)a / (int)b);
+            return a / b;
     }
 }
 char EvaluateExpression()
 {
-    LinkStack OPND;
+    sqstack OPND;
     LinkStack OPTR;
-    InitLinkStack(&OPND);
+    InitSqStack(&OPND);
     InitLinkStack(&OPTR);
-    SElemType e = {'#'};
-    SElemType a, b, theta;
+    SElemType e = {'#'}, theta;
+    int n;
+    ElemType t, a, b;
     PushLinkStack(&OPTR, e);
     e.ch = getchar();
     while(e.ch != '#' || GetTopLinkStack(OPTR).ch != '#')
     {
         if(!In(e.ch))
         {
-            PushLinkStack(&OPND, e);
+            ungetc(e.ch, stdin);
+            scanf("%d", &n);
+            t.num = n;
+            PushLinkStack(&OPND, t);
             printf("Push OPND\n");
             e.ch = getchar();
         }

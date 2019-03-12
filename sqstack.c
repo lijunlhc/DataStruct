@@ -9,26 +9,26 @@
 
 #include "sqstack.h"
 Status InitSqStack(SqStack *S) {
-	S->base = (SElemType *) malloc(sizeof(SElemType) * MAXSIZE);
+	S->base = (ElemType *) malloc(sizeof(ElemType) * MAXSIZE);
 	if (!S->base)
 		exit(OVERFLOW);
 	S->top = S->base;
 	S->stacksize = MAXSIZE;
 	return OK;
 }
-Status PushSqStack(SqStack *S, SElemType e) {
+Status PushSqStack(SqStack *S, ElemType e) {
 	if (S->top - S->base == S->stacksize)
 		return ERROR;
 	*S->top++ = e;
 	return OK;
 }
-Status PopSqStack(SqStack *S, SElemType *e) {
+Status PopSqStack(SqStack *S, ElemType *e) {
 	if (S->top == S->base)
 		return ERROR;
 	*e = *--S->top;
 	return OK;
 }
-Status GetTopSqStack(SqStack S, SElemType *e) {
+Status GetTopSqStack(SqStack S, ElemType *e) {
 	if(S.top == S.base)
 		return ERROR;
 	*e = *(S.top - 1);
