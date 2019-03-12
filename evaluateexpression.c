@@ -221,14 +221,13 @@ int Operate(int a, char theta, int b)
             return a / b;
     }
 }
-char EvaluateExpression()
+int EvaluateExpression()
 {
-    sqstack OPND;
+    SqStack OPND;
     LinkStack OPTR;
     InitSqStack(&OPND);
     InitLinkStack(&OPTR);
     SElemType e = {'#'}, theta;
-    int n;
     ElemType t, a, b;
     PushLinkStack(&OPTR, e);
     e.ch = getchar();
@@ -237,10 +236,8 @@ char EvaluateExpression()
         if(!In(e.ch))
         {
             ungetc(e.ch, stdin);
-            scanf("%d", &n);
-            t.num = n;
-            PushLinkStack(&OPND, t);
-            printf("Push OPND\n");
+            scanf("%d", &t.num);
+            PushSqStack(&OPND, t);
             e.ch = getchar();
         }
         else
@@ -248,31 +245,21 @@ char EvaluateExpression()
             {
                 case '<':
                     PushLinkStack(&OPTR, e);
-                    printf("Push OPTR\n");
                     e.ch = getchar();
                     break;
                 case '>':
                     PopLinkStack(&OPTR, &theta);
-                    printf("Pop OPTR\n");
-                    PopLinkStack(&OPND, &a);
-                    printf("Pop OPND\n");
-                    PopLinkStack(&OPND, &b);
-                    printf("Pop OPND\n");
-                    e.ch = Operate(a.ch, theta.ch, b.ch);
-                    printf("ans = %c\n", e.ch);
-                    PushLinkStack(&OPND, e);
-                    printf("Push OPND\n");
+                    PopSqStack(&OPND, &b);
+                    PopSqStack(&OPND, &a);
+                    t.num = Operate(a.num, theta.ch, b.num);
+                    PushSqStack(&OPND, t);
                     break;
                 case '=':
                     PopLinkStack(&OPTR, &e);
-                    printf("Pop OPTR");
                     e.ch = getchar();
                     break;
             }
-        //printf("%c\n", e.ch);
-        //printf("%c\n", GetTopLinkStack(OPTR).ch);
     }
-    printf("test\n");
-    printf("%c\n", GetTopLinkStack(OPND).ch);
-    return GetTopLinkStack(OPND).ch;
+    GetTopSqStack(OPND, &t);
+    return t.num;
 }

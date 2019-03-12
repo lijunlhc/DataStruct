@@ -2,9 +2,9 @@
 #include "evaluateexpression.h"
 int main()
 {
-    char ans;
+    int ans;
     ans = EvaluateExpression();
-    printf("%c\n", ans);
+    printf("%d\n", ans);
     return 0;
 }
 
