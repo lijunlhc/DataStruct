@@ -15,16 +15,16 @@ typedef int Status;
 #define MAXSIZE 100
 typedef struct {
 	int num;
-} SElemType;
+} ElemType;
 typedef struct {
-	SElemType *base;
-	SElemType *top;
+	ElemType *base;
+	ElemType *top;
 	int stacksize;
 } SqStack;
 Status InitSqStack(SqStack *S);
-Status PushSqStack(SqStack *S, SElemType e);
-Status PopSqStack(SqStack *S, SElemType *e);
-Status GetTopSqStack(SqStack S, SElemType *e);
+Status PushSqStack(SqStack *S, ElemType e);
+Status PopSqStack(SqStack *S, ElemType *e);
+Status GetTopSqStack(SqStack S, ElemType *e);
 Status SqStackEmpty(SqStack S);
 
 #endif /* SQSTACK_H_ */
