@@ -1,8 +1,10 @@
 #include <stdio.h>
-#include "matching.h"
+#include "evaluateexpression.h"
 int main()
 {
-    Matching();
+    char ans;
+    ans = EvaluateExpression();
+    printf("%c\n", ans);
     return 0;
 }
 
