@@ -1,10 +1,9 @@
 #include <stdio.h>
-#include "evaluateexpression.h"
+#include "dancepartner.h"
 int main()
 {
-    int ans;
-    ans = EvaluateExpression();
-    printf("%d\n", ans);
+    QElemType dancer[5] = {{"Qiang Qiang", 'M'}, {"Chao Chao", 'M'}, {"Peng Peng", 'M'}, {"Hong Hong", 'F'}, {"Jing Jing", 'F'}};
+    DancePartner(dancer, 5);
     return 0;
 }
 

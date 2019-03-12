@@ -7,6 +7,8 @@
 
 #include <stdlib.h>
 #include "sqqueue.h"
+#define TRUE 1
+#define FALSE 0
 Status InitSqQueue(SqQueue *Q) {
 	Q->base = (QElemType *)malloc(sizeof(QElemType) * MAXQSIZE);
 	if(!Q->base)
@@ -31,7 +33,13 @@ Status DeSqQueue(SqQueue *Q, QElemType *e) {
 	Q->front = (Q->front + 1) % MAXQSIZE;
 	return OK;
 }
-QElemType GetHead(SqQueue Q) {
+QElemType GetHeadSqQueue(SqQueue Q) {
 	if(Q.front != Q.rear)
 		return Q.base[Q.front];
+}
+Status SqQueueEmpty(SqQueue Q) {
+	if(Q.front == Q.rear)
+		return TRUE;
+	else
+		return FALSE;
 }

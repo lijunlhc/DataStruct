@@ -14,7 +14,8 @@
 typedef int Status;
 #define MAXQSIZE 100
 typedef struct {
-	int num;
+	char name[20];
+    char sex;
 } QElemType;
 typedef struct {
 	QElemType *base;
@@ -25,6 +26,7 @@ Status InitSqQueue(SqQueue *Q);
 int SqQueueLength(SqQueue Q);
 Status EnSqQueue(SqQueue *Q, QElemType e);
 Status DeSqQueue(SqQueue *Q, QElemType *e);
-QElemType GetHead(SqQueue);
+QElemType GetHeadSqQueue(SqQueue);
+Status SqQueueEmpty(SqQueue Q);
 
 #endif /* SQQUEUE_H_ */
