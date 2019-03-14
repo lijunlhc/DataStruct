@@ -7,4 +7,5 @@ typedef struct
     int length;
 } SString;
 int Index_BF(SString S, SString T, int pos);
+int Index_KMP(SString S, SString T, int pos);
 #endif
