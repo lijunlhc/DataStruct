@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "sort.h"
 void InsertSort(SqList *L)
 {
@@ -115,4 +116,70 @@ void SelectSort(SqList *L)
             (*L).r[k] = t;
         }
     }
+}
+void HeapAdjust(SqList *L, int s, int m)
+{
+    RedType rc = (*L).r[s];
+    for(int j = 2 * s; j <= m; j *= 2)
+    {
+        if(j < m && (*L).r[j].key < (*L).r[j+1].key)
+            ++j;
+        if(rc.key >= (*L).r[j].key)
+            break;
+        (*L).r[s] = (*L).r[j];
+        s = j;
+    }
+    (*L).r[s] = rc;
+}
+void CreatHeap(SqList *L)
+{
+    int n = L->length;
+    for(int i = n / 2; i > 0; --i)
+        HeapAdjust(L, i, n);
+}
+void HeapSort(SqList *L)
+{
+    CreatHeap(L);
+    for(int i = L->length; i > 1; --i)
+    {
+        RedType x = (*L).r[1];
+        (*L).r[1] = (*L).r[i];
+        (*L).r[i] = x;
+        HeapAdjust(L, 1, i-1);
+    }
+}
+void Merge(RedType R[], RedType T[], int low, int mid, int high)
+{
+    int i = low;
+    int j = mid+ 1;
+    int k = low;
+    while(i <= mid && j <= high)
+    {
+        if(R[i].key <= R[j].key)
+            T[k++] = R[i++];
+        else
+            T[k++] = R[j++];
+    }
+    while(i <= mid)
+        T[k++] = R[i++];
+    while(j <= high)
+        T[k++] = R[j++];
+}
+void MSort(RedType R[], RedType T[], int low, int high)
+{
+    int mid;
+    RedType S[MAXSIZE + 1];
+    if(low == high)
+        T[low] = R[low];
+    else
+    {
+        mid = (low + high) / 2;
+        MSort(R, S, low, mid);
+        MSort(R, S, mid + 1, high);
+        Merge(S, T, low, mid, high);
+    }
+}
+void MergeSort(SqList *L)
+{
+    MSort((*L).r, (*L).r, 1, (*L).length);
 }

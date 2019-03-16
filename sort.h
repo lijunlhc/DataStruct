@@ -22,4 +22,10 @@ int Partition(SqList *L, int low, int high);
 void QSort(SqList *L, int low, int high);
 void QuickSort(SqList *L);
 void SelectSort(SqList *L);
+void HeapAdjust(SqList *L, int s, int m);
+void CreatHeap(SqList *L);
+void HeapSort(SqList *L);
+void Merge(RedType R[], RedType T[], int low, int mid, int high);
+void MSort(RedType R[], RedType T[], int low, int high);
+void MergeSort(SqList *L);
 #endif
