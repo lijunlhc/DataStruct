@@ -132,13 +132,37 @@ void QSort(int a[], int low, int high)
     if(low < high)
     {
         int pivotkey = Partition(a, low, high);
-        QSort(a, low, pivotkey);
+        QSort(a, low, pivotkey - 1);
         QSort(a, pivotkey + 1, high);
     }
 }
 void QuickSort(int a[], int length)
 {
     QSort(a, 1, length);
+}
+
+void SelectSort(int a[], int length)
+{
+    for(int i = 1; i < length; ++i)
+    {
+        int k = i;
+        for(int j = i + 1; j <= length; ++j)
+            if(a[j] < a[k])
+                k = j;
+        int t;
+        if(k != i)
+        {
+            t = a[i];
+            a[i] = a[k];
+            a[k] = t;
+        }
+        printf("第%d趟排序结果：", i);
+        for(int j = 1; j <= length; ++j)
+        {
+            printf("%d ", a[j]);
+        }
+        printf("\n");
+    }
 }
 
 int main()
@@ -153,6 +177,7 @@ int main()
     //BInsertSort(a, LEN);
     //BubbleSort(a, LEN);
     QuickSort(a, LEN);
+    //SelectSort(a, LEN);
     for(i = 1; i <= LEN; i++)
         printf("%d ", a[i]);
     printf("\n");
