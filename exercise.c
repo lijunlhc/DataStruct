@@ -15,7 +15,7 @@ void InsertSort(int a[], int length)
                 a[j+1] = a[j];
             a[j+1] = a[0];
         }
-        printf("第%d趟排序结果：", i-1);
+        printf("第%d趟排序: ", i-1);
         for(j = 1; j <= length; ++j)
         {
             printf("%d ", a[j]);
@@ -43,7 +43,7 @@ void BInsertSort(int a[], int length)
         for(j = i - 1; j >= high + 1; --j)
             a[j+1] = a[j];
         a[high + 1] = a[0];
-        printf("第%d趟排序结果：", i-1);
+        printf("第%d趟排序: ", i-1);
         for(j = 1; j <= length; ++j)
         {
             printf("%d ", a[j]);
@@ -70,7 +70,7 @@ void ShellSort(int a[], int length, int dt[], int t)
     for(int k = 0; k < t; ++k)
     {
         ShellInsert(a, length, dt[k]);
-        printf("第%d趟排序结果：", k+1);
+        printf("第%d趟排序: ", k+1);
         for(j = 1; j <= length; ++j)
         {
             printf("%d ", a[j]);
@@ -96,7 +96,7 @@ void BubbleSort(int a[], int length)
                 a[j+1] = t;
             }
         --m;
-        printf("第%d趟排序结果：", length-m-1);
+        printf("第%d趟排序: ", length-m-1);
         for(int j = 1; j <= length; ++j)
         {
             printf("%d ", a[j]);
@@ -156,7 +156,7 @@ void SelectSort(int a[], int length)
             a[i] = a[k];
             a[k] = t;
         }
-        printf("第%d趟排序结果：", i);
+        printf("第%d趟排序: ", i);
         for(int j = 1; j <= length; ++j)
         {
             printf("%d ", a[j]);
@@ -169,17 +169,19 @@ int main()
 {
     int a[LEN+1] = {0, 12, 2, 16, 30, 28, 10, 16, 20, 6, 18};
     int i;
+    printf("原始序列: ");
     for(i = 1; i <= LEN; i++)
         printf("%d ", a[i]);
     printf("\n");
+    //InsertSort(a, LEN);
+    //BInsertSort(a, LEN);
     //int dk[3] = {5, 3, 1};
     //ShellSort(a, LEN, dk, 3);
-    //BInsertSort(a, LEN);
     //BubbleSort(a, LEN);
-    QuickSort(a, LEN);
-    //SelectSort(a, LEN);
-    for(i = 1; i <= LEN; i++)
+    //QuickSort(a, LEN);
+    SelectSort(a, LEN);
+    /*for(i = 1; i <= LEN; i++)
         printf("%d ", a[i]);
-    printf("\n");
+    printf("\n");*/
     return 0;
 }
