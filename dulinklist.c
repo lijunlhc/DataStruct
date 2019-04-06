@@ -5,7 +5,21 @@
  *      Author: junli
  */
 #include <stdlib.h>
-#include "DuLinkList.h"
+
+#define OK 1
+#define ERROR 0
+#define OVERFLOW -2
+typedef int Status;
+
+typedef struct {
+	int num;
+} ElemType;
+
+typedef struct DuLNode {
+	ElemType data;
+	struct DuLNode *prior;
+	struct DuLNode *next;
+} DuLNode, *DuLinkList;
 Status InitDuList(DuLinkList L) {
 	L = (DuLNode *) malloc(sizeof(DuLNode));
 	L->next = NULL;
