@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Polynomial.h"
+
+typedef struct PNode {
+	float coef;
+	int expn;
+	struct PNode *next;
+} PNode, *Polynomial;
+
 void CreatePolyn(Polynomial *P, int n) {
 	*P = (PNode *)malloc(sizeof(PNode));
 	(*P)->next = NULL;
@@ -52,4 +58,17 @@ void AddPolyn(Polynomial *Pa, Polynomial *Pb) {
 	}
 	p3->next = p1 ? p1 : p2;
 	free(*Pb);
+}
+
+int main() {
+    Polynomial Pa, Pb;
+    CreatePolyn(&Pa, 4);
+    CreatePolyn(&Pb, 3);
+    AddPolyn(&Pa, &Pb);
+    PNode *p = Pa->next;
+    while(p) {
+        printf("%f %d\n", p->coef, p->expn);
+        p = p->next;
+    }
+    return 0;
 }
