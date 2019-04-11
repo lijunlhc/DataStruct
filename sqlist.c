@@ -7,7 +7,6 @@
 #define OVERFLOW -2
 typedef int Status;
 
-
 #define MAXSIZE 100
 typedef struct {
 	int num;
