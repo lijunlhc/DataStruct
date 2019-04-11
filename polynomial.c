@@ -23,6 +23,7 @@ void CreatePolyn(Polynomial *P, int n) {
 		pre->next = s;
 	}
 }
+
 void AddPolyn(Polynomial *Pa, Polynomial *Pb) {
 	PNode *p1 = (*Pa)->next;
 	PNode *p2 = (*Pb)->next;
@@ -38,7 +39,8 @@ void AddPolyn(Polynomial *Pa, Polynomial *Pb) {
 				PNode *r = p2;
 				p2 = p2->next;
 				free(r);
-			} else {
+			} 
+            else {
 				PNode *r = p1;
 				p1 = p1->next;
 				free(r);
@@ -46,11 +48,13 @@ void AddPolyn(Polynomial *Pa, Polynomial *Pb) {
 				p2 = p2->next;
 				free(r);
 			}
-		} else if(p1->expn < p2->expn) {
+		} 
+        else if(p1->expn < p2->expn) {
 			p3->next = p1;
 			p3 = p1;
 			p1 = p1->next;
-		} else {
+		} 
+        else {
 			p3->next = p2;
 			p3 = p2;
 			p2 = p2->next;
