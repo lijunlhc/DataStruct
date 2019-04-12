@@ -22,13 +22,11 @@ Status InitList_Sq(SqList *L) {
 }
 
 Status ListInsert_Sq(SqList *L, int i, int e) {
-	if ((i < 1) || (i > L->length + 1))
-	{
+	if ((i < 1) || (i > L->length + 1)) {
 		printf("位置不合法\n");
 		return ERROR;
 	}
-	if (L->length == MAXSIZE)
-	{
+	if (L->length == MAXSIZE) {
 		printf("顺序表已满");
 		return ERROR;
 	}
@@ -40,21 +38,23 @@ Status ListInsert_Sq(SqList *L, int i, int e) {
 }
 
 Status ListInsert_Sq_n(SqList *L, int i, int e, int n) {
-	for(int i = 0; i < n; i++)
+	for (int j = 0; j < n; j++)
 		ListInsert_Sq(L, i, e);
 	return OK;
 }
 
 void display(SqList L) {
-	for(int i = 0; i < L.length; i++)
+	for (int i = 0; i < L.length; i++)
 		printf("%d ", L.elem[i]);
 }
 
 int main() {
 	SqList L;
 	InitList_Sq(&L);
-	for(int i = 0; i < 10; i++)
+	for (int i = 0; i < 10; i++)
 		ListInsert_Sq(&L, L.length + 1, i);
+	ListInsert_Sq(&L, 5, 100);
+	ListInsert_Sq_n(&L, 5, 200, 5);
 	display(L);
 	return 0;
 }
