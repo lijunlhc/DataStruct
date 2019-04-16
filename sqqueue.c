@@ -13,55 +13,63 @@
 #define OVERFLOW -2
 typedef int Status;
 
-#define MAXQSIZE 100
+#define TRUE 1
+#define FALSE 0
+
+#define MAXSIZE 100
 
 typedef struct {
 	char name[20];
     char sex;
 } QElemType;
+
 typedef struct {
 	QElemType *base;
 	int front;
 	int rear;
 } SqQueue;
-#define TRUE 1
-#define FALSE 0
-Status InitSqQueue(SqQueue *Q) {
-	Q->base = (QElemType *)malloc(sizeof(QElemType) * MAXQSIZE);
+
+Status InitQueue(SqQueue *Q) {
+	Q->base = (QElemType *)malloc(sizeof(QElemType) * MAXSIZE);
 	if(!Q->base)
 		exit(OVERFLOW);
 	Q->front = Q->rear = 0;
 	return OK;
 }
-int SqQueueLength(SqQueue Q) {
-	return (Q.rear - Q.front + MAXQSIZE) % MAXQSIZE;
+
+int QueueLength(SqQueue Q) {
+	return (Q.rear - Q.front + MAXSIZE) % MAXSIZE;
 }
-Status EnSqQueue(SqQueue *Q, QElemType e) {
-	if((Q->rear + 1) % MAXQSIZE == Q->front)
+
+Status EnQueue(SqQueue *Q, QElemType e) {
+	if((Q->rear + 1) % MAXSIZE == Q->front)
 		return ERROR;
 	Q->base[Q->rear] = e;
-	Q->rear = (Q->rear + 1) % MAXQSIZE;
+	Q->rear = (Q->rear + 1) % MAXSIZE;
 	return OK;
 }
-Status DeSqQueue(SqQueue *Q, QElemType *e) {
+
+Status DeQueue(SqQueue *Q, QElemType *e) {
 	if(Q->front == Q->rear)
 		return ERROR;
 	*e = Q->base[Q->front];
-	Q->front = (Q->front + 1) % MAXQSIZE;
+	Q->front = (Q->front + 1) % MAXSIZE;
 	return OK;
 }
-QElemType GetHeadSqQueue(SqQueue Q) {
+
+QElemType GetHeadQueue(SqQueue Q) {
 	if(Q.front != Q.rear)
 		return Q.base[Q.front];
 }
-Status SqQueueEmpty(SqQueue Q) {
+
+Status QueueEmpty(SqQueue Q) {
 	if(Q.front == Q.rear)
-		return TRUE;
+		return 1;
 	else
-		return FALSE;
+		return 0;
 }
 
 int main() {
-	printf("Hello World\n");
+	printf("Hello\n");
 	return 0;
 }
