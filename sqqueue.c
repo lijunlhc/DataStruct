@@ -5,8 +5,25 @@
  *      Author: junli
  */
 
+#include <stdio.h>
 #include <stdlib.h>
-#include "sqqueue.h"
+
+#define OK 1
+#define ERROR 0
+#define OVERFLOW -2
+typedef int Status;
+
+#define MAXQSIZE 100
+
+typedef struct {
+	char name[20];
+    char sex;
+} QElemType;
+typedef struct {
+	QElemType *base;
+	int front;
+	int rear;
+} SqQueue;
 #define TRUE 1
 #define FALSE 0
 Status InitSqQueue(SqQueue *Q) {
@@ -42,4 +59,9 @@ Status SqQueueEmpty(SqQueue Q) {
 		return TRUE;
 	else
 		return FALSE;
+}
+
+int main() {
+	printf("Hello World\n");
+	return 0;
 }
