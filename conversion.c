@@ -80,8 +80,9 @@ Status GetTopSqStack(SqStack S, ElemType *e) {
 
 void conversion(int N) {
 	SqStack S;
-	InitSqStack(&S);
 	ElemType e;
+
+	InitSqStack(&S);	
 	while(N) {
 		e.num = N % 8;
 		PushSqStack(&S, e);

@@ -74,15 +74,21 @@ ElemType GetTopSqStack(SqStack S) {
 	else
 		return *(S.top - 1);
 }
-Status Matching() {
+
+Status Matching() 
+{
 	SqStack S;
-	InitSqStack(&S);
 	int flag = 1;
 	char c;
-	printf("Please enter a character: ");
-	scanf("%c", &c);
-	ElemType e = { c };
-	while (e.ch != '#' && flag) {
+	ElemType e;
+
+	InitSqStack(&S);
+
+	printf("Please enter characters: ");
+	e.ch = getchar();
+
+	while (e.ch != '#' && flag) 
+	{
 		switch (e.ch) {
 		case '[':
 		case '(':
@@ -91,7 +97,6 @@ Status Matching() {
 			break;
 		case ')':
 			if (!SqStackEmpty(S) && GetTopSqStack(S).ch == '(') {
-
 				PopSqStack(&S, &e);
 				printf("Pop\n");
 			} else
@@ -106,8 +111,7 @@ Status Matching() {
 			break;
 		}
 		//printf("Please enter a character: ");
-		scanf("%c", &c);
-		e.ch = c;
+		e.ch = getchar();
 	}
 	if (SqStackEmpty(S) && flag) {
 		printf("TRUE\n");
