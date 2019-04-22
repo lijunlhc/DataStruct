@@ -64,10 +64,13 @@ Status QueueEmpty(SqQueue Q) {
 void DancePartner(QElemType dancer[], int num) {
 	SqQueue Mdancers;
 	SqQueue Fdancers;
+	QElemType p;
+	int i;
+
 	InitQueue(&Mdancers);
 	InitQueue(&Fdancers);
-	QElemType p;
-	for (int i = 0; i < num; ++i) {
+	
+	for (i = 0; i < num; i++) {
 		p = dancer[i];
 		if (p.sex == 'F')
 			EnQueue(&Fdancers, p);
@@ -75,16 +78,20 @@ void DancePartner(QElemType dancer[], int num) {
 			EnQueue(&Mdancers, p);
 	}
 	printf("The dancing partners are:\n");
-	while (!QueueEmpty(Fdancers) && !QueueEmpty(Mdancers)) {
+	while (!QueueEmpty(Fdancers) && !QueueEmpty(Mdancers)) 
+	{
 		DeQueue(&Fdancers, &p);
 		printf("%s ", p.name);
 		DeQueue(&Mdancers, &p);
 		printf("%s\n", p.name);
 	}
-	if (!QueueEmpty(Fdancers)) {
+	if (!QueueEmpty(Fdancers)) 
+	{
 		p = GetHeadQueue(Fdancers);
 		printf("The first woman to get a partner is: %s\n", p.name);
-	} else if (!QueueEmpty(Mdancers)) {
+	} 
+	else if (!QueueEmpty(Mdancers)) 
+	{
 		p = GetHeadQueue(Mdancers);
 		printf("The first man to get a partner is: %s\n", p.name);
 	}
