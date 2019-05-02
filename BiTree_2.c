@@ -74,16 +74,16 @@ int Depth(BiTree T) {
     }
 }
 
-void CreateBiTree(BiTree *T) {
+void CreateBiTree(BiTree *T, FILE *fp) {
     char ch;
-    scanf("%c", &ch);
+    fscanf(fp, "%c", &ch);
     if(ch == '#')
         *T = NULL;
     else {
         *T = (BiTNode *)malloc(sizeof(BiTNode));
         (*T)->data.ch = ch;
-        CreateBiTree(&(*T)->lchild);
-        CreateBiTree(&(*T)->rchild);
+        CreateBiTree(&(*T)->lchild, fp);
+        CreateBiTree(&(*T)->rchild, fp);
     }
 }
 
@@ -97,6 +97,16 @@ int LeafCount(BiTree T) {
 }
 
 int main() {
-    printf("Hello\n");
-    return 0;
+    BiTree T;
+    FILE *fp;
+    fp = fopen("bitree_file.txt", "r");
+	CreateBiTree(&T, fp);
+    fclose(fp);
+	InOrderTraverse(T);
+	printf("\n");
+	PreOrderTraverse(T);
+	printf("\n");
+	PostOrderTraverse(T);
+	printf("\n");
+	return 0;
 }

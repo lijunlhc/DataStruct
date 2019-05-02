@@ -17,16 +17,18 @@ void InThreading(BiThrTree p)
 	if(p)
 	{
 		InThreading(p->lchild);
-		if(!p->lchild)
-		{
+		if(!p->lchild) {
 			p->LTag = 1;
 			p->lchild = pre;
 		}
-		if(!pre->rchild)
-		{
+		else 
+			p->LTag = 0;
+		if(!pre->rchild) {
 			pre->RTag = 1;
 			pre->rchild = p;
 		}
+		else 
+			pre->RTag = 0;
 		pre = p;
 		InThreading(p->rchild);
 	}
@@ -34,21 +36,20 @@ void InThreading(BiThrTree p)
 
 void InOrderThreading(BiThrTree *Thrt, BiThrTree T)
 {
-		*Thrt = (BiThrNode *)malloc(sizeof(BiThrNode));
-		(*Thrt)->LTag = 0;
-		(*Thrt)->RTag = 1;
-		(*Thrt)->rchild = *Thrt;
-		if(!T)
-			(*Thrt)->lchild = *Thrt;
-		else
-		{
-				(*Thrt)->lchild = T;
-				pre = *Thrt;
-				InThreading(T);
-				pre->rchild = *Thrt;
-				pre->RTag = 1;
-				(*Thrt)->rchild = pre;
-		}
+	*Thrt = (BiThrNode *)malloc(sizeof(BiThrNode));
+	(*Thrt)->LTag = 0;
+	(*Thrt)->RTag = 1;
+	(*Thrt)->rchild = *Thrt;
+	if(!T)
+		(*Thrt)->lchild = *Thrt;
+	else {
+		(*Thrt)->lchild = T;
+		pre = *Thrt;
+		InThreading(T);
+		pre->rchild = *Thrt;
+		pre->RTag = 1;
+		(*Thrt)->rchild = pre;
+	}
 }
 
 void InOrderTraverse_Thr(BiThrTree T)
