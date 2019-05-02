@@ -87,6 +87,15 @@ void CreateBiTree(BiTree *T) {
     }
 }
 
+int LeafCount(BiTree T) {
+    if(T == NULL)
+        return 0;
+    if(T->lchild == NULL && T->rchild == NULL)
+        return 1;
+    else
+        return LeafCount(T->lchild) + LeafCount(T->rchild);
+}
+
 int main() {
     printf("Hello\n");
     return 0;
