@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define OK 1
 #define ERROR 0
 #define OVERFLOW -2
 typedef int Status;
+
+typedef char **HuffmanCode;
 
 typedef struct {
     int weight;
@@ -94,8 +97,46 @@ void CreateHuffmanTree(HuffmanTree *HT, int n)
     }
 }
 
+void CreatHuffmanCode(HuffmanTree HT, HuffmanCode *HC, int n)
+{
+	char* code;
+	int i;
+	int start, c, f;
+	
+	*HC = (HuffmanCode)malloc((n+1)*sizeof(char *));
+	if(!(*HC))
+		exit(OVERFLOW);
+	
+	code = (char*)malloc(n*sizeof(char));
+	if(!code)
+		exit(OVERFLOW);	
+	
+	code[n-1] = '\0';									//字符串结尾 
+	for(i=1; i<=n; i++)									//逐次求每个叶子结点的哈夫曼编码 
+	{
+		start = n - 1;
+        c = i;
+        f = HT[i].parent;
+        while(f != 0) {
+            --start;
+			if(HT[f].lchild==c)
+				code[start] = '0';
+			else
+				code[start] = '1';
+            c = f;
+            f = HT[f].parent;
+		}
+		
+		(*HC)[i] = (char*)malloc((n-start)*sizeof(char));
+		
+		strcpy((*HC)[i], &code[start]);					//从start开始复制 
+	}
+	
+	free(code);
+}
+
 int main()
 {
-    printf("Test\n");
+    printf("Hello\n");
     return 0;
 }
