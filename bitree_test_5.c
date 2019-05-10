@@ -46,6 +46,16 @@ void CreateBiTree(BiTree *T, FILE *fp) {
     	}
 }
 
+int count(BiTree T) {
+	static int n = 0;
+	if(T) {
+		if(T->data % 2 == 0) n++;
+    	    	count(T->lchild);
+    	    	count(T->rchild);
+    	}
+	return n;
+}
+
 int main() {
     	BiTree T;
     	FILE *fp;
@@ -55,7 +65,8 @@ int main() {
     	fclose(fp);
 
 	//PreOrderTraverse(T);
-	CPreOrderTraverse(T);
-	printf("\n");
+	//CPreOrderTraverse(T);
+	//printf("\n");
+	printf("偶数结点数目为%d\n", count(T));
 	return 0;
 }
