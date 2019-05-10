@@ -7,52 +7,55 @@
 typedef int Status;
 
 typedef struct BiTNode {
-    int data;
-    struct BiTNode *lchild;
-    struct BiTNode *rchild;
+	int data;
+    	struct BiTNode *lchild;
+    	struct BiTNode *rchild;
 } BiTNode, *BiTree;
 
 void PreOrderTraverse(BiTree T) {
-    if(T) {
-        printf("->%d", T->data);
-        PreOrderTraverse(T->lchild);
-        PreOrderTraverse(T->rchild);
+	if(T) {
+		printf("->%d", T->data);
+    	    	PreOrderTraverse(T->lchild);
+    	    	PreOrderTraverse(T->rchild);
+    	}
+}
+
+void CPreOrderTraverse(BiTree T) {
+	if(T) {
+		if(T->data > 0) printf("->%d", T->data);
+        	CPreOrderTraverse(T->lchild);
+	        CPreOrderTraverse(T->rchild);
     }
 }
 
 void CreateBiTree(BiTree *T, FILE *fp) {
-    int n;
-    fscanf(fp, "%d", &n);
-    if(ch == '#')
-        *T = NULL;
-    else {
-        *T = (BiTNode *)malloc(sizeof(BiTNode));
-        (*T)->data.ch = ch;
-        CreateBiTree(&(*T)->lchild, fp);
-        CreateBiTree(&(*T)->rchild, fp);
-    }
-}
+	int i;
+	char c;
+	int n;
 
-int LeafCount(BiTree T) {
-    if(T == NULL)
-        return 0;
-    if(T->lchild == NULL && T->rchild == NULL)
-        return 1;
-    else
-        return LeafCount(T->lchild) + LeafCount(T->rchild);
+	n = fscanf(fp, "%d", &i);
+	if(n <= 0) {
+		fscanf(fp, "%c", &c);
+        	*T = NULL;
+	}	
+    	else {
+        	*T = (BiTNode *)malloc(sizeof(BiTNode));
+        	(*T)->data = i;
+        	CreateBiTree(&(*T)->lchild, fp);
+        	CreateBiTree(&(*T)->rchild, fp);
+    	}
 }
 
 int main() {
-    BiTree T;
-    FILE *fp;
-    fp = fopen("bitree_file.txt", "r");
+    	BiTree T;
+    	FILE *fp;
+
+    	fp = fopen("input.txt", "r");
 	CreateBiTree(&T, fp);
-    fclose(fp);
-	InOrderTraverse(T);
-	printf("\n");
-	PreOrderTraverse(T);
-	printf("\n");
-	PostOrderTraverse(T);
+    	fclose(fp);
+
+	//PreOrderTraverse(T);
+	CPreOrderTraverse(T);
 	printf("\n");
 	return 0;
 }
